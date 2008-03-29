@@ -13,7 +13,7 @@
 		<filename module="mod_jea_search">mod_jea_search.php</filename>
 		<filename module="mod_jea_search">tmpl/default.php</filename>
 	</files>
-	<languages folder="site">
+	<languages folder="languages">
 		<language tag="fr-FR">fr-FR.mod_jea_search.ini</language>
 	</languages>
 	<params>
