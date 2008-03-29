@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install type="module" version="1.5">
+	<name>JEA search V1.0</name>
+	<author>Sylvain Philip</author>
+	<creationDate>mars 2008</creationDate>
+	<copyright>(C) 2008 PHILIP Sylvain. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>contact@sphilip.com</authorEmail>
+	<authorUrl>www.sphilip.com</authorUrl>
+	<version>1.0</version>
+	<description>DESCJEASEARCHMOD</description>
+	<files>
+		<filename module="mod_jea_search">mod_jea_search.php</filename>
+		<filename module="mod_jea_search">tmpl/default.php</filename>
+	</files>
+	<languages folder="site">
+		<language tag="fr-FR">fr-FR.mod_jea_search.ini</language>
+	</languages>
+	<params>
+		<param name="use_ajax" type="radio" default="1" label="Use AJAX" description="PARAMUSEAJAX">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

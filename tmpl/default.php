@@ -1,0 +1,50 @@
+<?php // no direct access
+defined('_JEXEC') or die('Restricted access');
+
+$use_ajax = $params->get('use_ajax', 0);
+$document =& JFactory::getDocument();
+$document->addStyleDeclaration("
+	#jea_search_form select {
+		width:12em;
+	}");
+
+if ($use_ajax ) {
+	JHTML::script('search.js', 'components/com_jea/medias/js/', true);
+	
+	//initialize the form when the page load
+	$document->addScriptDeclaration("
+		window.addEvent('domready', function() {
+			refreshForm(); 
+		});");
+}
+
+?>
+
+<form action="index.php?option=com_jea&amp;task=search" method="post" id="jea_search_form" enctype="application/x-www-form-urlencoded" >
+
+	<p>
+    <input type="radio" name="cat" id="renting" value="renting" checked="checked" <?php echo $use_ajax ? 'onclick="refreshForm()"' : '' ?> >
+    <label for="renting"><?php echo JText::_('Renting') ?></label>
+    <input type="radio" name="cat" id="selling" value="selling" <?php echo $use_ajax ? 'onclick="refreshForm()"' : '' ?> >
+    <label for="selling"><?php echo JText::_('Selling') ?></label>
+    </p>
+    
+<?php if ( $use_ajax ): ?>
+    <p>
+    <select id="type_id" name="type_id" onchange="updateList(this)" class="inputbox"><option value="0"> </option></select>
+    <select id="department_id"  name="department_id" onchange="updateList(this)" class="inputbox" ><option value="0"> </option></select>
+    <select id="town_id" name="town_id" onchange="updateList(this)" class="inputbox"><option value="0"> </option></select>
+    </p>
+    
+<?php else: ?> 
+
+   	<p>
+	<?php echo getHtmlList('#__jea_types', '--'.JText::_( 'Property type' ).'--', 'type_id' ) ?>
+	<?php echo getHtmlList('#__jea_departments', '--'.JText::_( 'Department' ).'--', 'department_id' ) ?>
+  	<?php echo getHtmlList('#__jea_towns', '--'.JText::_( 'Town' ).'--', 'town_id' ) ?>
+  	</p>
+  	
+<?php endif ?>
+  	<p><input type="submit" class="button" value="<?php echo JText::_('Search') ?>" /></p>
+    <input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid', 0) ?>">
+</form>
