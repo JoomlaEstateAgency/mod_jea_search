@@ -23,9 +23,9 @@ if ($use_ajax ) {
 <form action="index.php?option=com_jea&amp;task=search" method="post" id="jea_search_form" enctype="application/x-www-form-urlencoded" >
 
 	<p>
-    <input type="radio" name="cat" id="renting" value="renting" checked="checked" <?php echo $use_ajax ? 'onclick="refreshForm()"' : '' ?> >
+    <input type="radio" name="cat" id="renting" value="renting" checked="checked" <?php echo $use_ajax ? 'onclick="refreshForm()"' : '' ?> />
     <label for="renting"><?php echo JText::_('Renting') ?></label>
-    <input type="radio" name="cat" id="selling" value="selling" <?php echo $use_ajax ? 'onclick="refreshForm()"' : '' ?> >
+    <input type="radio" name="cat" id="selling" value="selling" <?php echo $use_ajax ? 'onclick="refreshForm()"' : '' ?> />
     <label for="selling"><?php echo JText::_('Selling') ?></label>
     </p>
     
@@ -46,5 +46,5 @@ if ($use_ajax ) {
   	
 <?php endif ?>
   	<p><input type="submit" class="button" value="<?php echo JText::_('Search') ?>" /></p>
-    <input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid', 0) ?>">
+    <input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid', 0) ?>" />
 </form>
