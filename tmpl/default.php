@@ -9,7 +9,7 @@ $document->addStyleDeclaration("
 	}");
 
 if ($use_ajax ) {
-	JHTML::script('search.js', 'components/com_jea/medias/js/', true);
+	JHTML::script('search.js', 'medias/com_jea/js/', true);
 	
 	//initialize the form when the page load
 	$document->addScriptDeclaration("
@@ -45,7 +45,8 @@ if ($use_ajax ) {
   	</p>
   	
 <?php endif ?>
-  	<p><input type="submit" class="button" value="<?php echo JText::_('Search') ?>" /></p>
+  	<p><input type="submit" class="button" value="<?php echo JText::_('Search') ?>" />
     <input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid', 0) ?>" />
-    <input type="hidden" name="newsearch" value="true">
+    <input type="hidden" name="newsearch" value="true" />
+    </p>
 </form>
