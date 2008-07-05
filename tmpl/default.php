@@ -9,7 +9,7 @@ $document->addStyleDeclaration("
 	}");
 
 if ($use_ajax ) {
-	JHTML::script('search.js', 'medias/com_jea/js/', true);
+	JHTML::script('search.js', 'media/com_jea/js/', true);
 	
 	//initialize the form when the page load
 	$document->addScriptDeclaration("

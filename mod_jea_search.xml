@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install type="module" version="1.5">
-	<name>JEA search V1.0.2</name>
+	<name>JEA search V1.2</name>
 	<author>Sylvain Philip</author>
 	<creationDate>mars 2008</creationDate>
 	<copyright>(C) 2008 PHILIP Sylvain. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>contact@sphilip.com</authorEmail>
 	<authorUrl>www.sphilip.com</authorUrl>
-	<version>1.0.2</version>
+	<version>1.2</version>
 	<description>DESCJEASEARCHMOD</description>
 	<files>
 		<filename module="mod_jea_search">mod_jea_search.php</filename>
