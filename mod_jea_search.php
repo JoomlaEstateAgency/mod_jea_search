@@ -2,7 +2,7 @@
 /**
  * This file is part of Joomla Estate Agency - Joomla! extension for real estate agency
  *
- * @version		1.2 2008-07
+ * @version		1.3 2010-03
  * @package		Jea.module.search
  * @copyright	Copyright (C) 2008 PHILIP Sylvain. All rights reserved.
  * @license		GNU/GPL, see LICENSE.php
@@ -34,7 +34,8 @@ function getHtmlList($table, $title, $id ){
 
 //conflict between component searchform and module searchform because both use same id's
 $conflict = JRequest::getVar('option') == 'com_jea' && JRequest::getVar('layout') == 'search' ;
-if(!$conflict){
+$conflict2 = JRequest::getVar('option') == 'com_jea' && JRequest::getVar('layout') == 'form' ;
+if(!$conflict && !$conflict2 ){
 	require(JModuleHelper::getLayoutPath('mod_jea_search'));
 }
 
