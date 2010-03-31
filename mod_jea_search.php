@@ -1,17 +1,18 @@
 <?php
 /**
  * This file is part of Joomla Estate Agency - Joomla! extension for real estate agency
- *
- * @version		1.3 2010-03
+ * 
+ * @version     $Id$
  * @package		Jea.module.search
  * @copyright	Copyright (C) 2008 PHILIP Sylvain. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
+ * @license		GNU/GPL, see LICENSE.txt
  * Joomla Estate Agency is free software. This version may have been modified pursuant to the
  * GNU General Public License, and as distributed it includes or is derivative
  * of works licensed under the GNU General Public License or other free or open
  * source software licenses.
- *
+ * 
  */
+
 defined('_JEXEC') or die('Restricted access');
 
 function getHtmlList($table, $title, $id ){
