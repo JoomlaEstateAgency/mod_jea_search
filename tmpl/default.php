@@ -39,9 +39,9 @@ if ($use_ajax ) {
 <form action="index.php?option=com_jea&amp;task=search" method="post" id="jea_search_form" enctype="application/x-www-form-urlencoded" >
 
 	<?php if($category == 1): ?>
-    <input type="hidden" name="cat" value="selling" />
+    <input type="hidden" id="cat" name="cat" value="selling" />
     <?php elseif($category == 2): ?>
-    <input type="hidden" name="cat" value="renting" />
+    <input type="hidden" id="cat" name="cat" value="renting" />
     <?php else: ?>
 	<p>
     <input type="radio" name="cat" id="renting" value="renting" checked="checked" <?php echo $use_ajax ? 'onclick="reinitForm()"' : '' ?> />
