@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install type="module" version="1.5">
+<install type="module" version="1.5" method="upgrade">
 	<name>JEA search V1.3</name>
 	<author>Sylvain Philip</author>
 	<creationDate>mars 2008</creationDate>
@@ -7,7 +7,7 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>contact@sphilip.com</authorEmail>
 	<authorUrl>www.sphilip.com</authorUrl>
-	<version>1.3</version>
+	<version>1.4</version>
 	<description>DESCJEASEARCHMOD</description>
 	<files>
 		<filename module="mod_jea_search">mod_jea_search.php</filename>
@@ -43,5 +43,9 @@
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>
+		
+		<param name="sales_itemid" type="menuitem" default="" label="Sales menu Item" description="PARAMSALESMENUITEM"/>
+		<param name="rentals_itemid" type="menuitem" default="" label="Rentals menu Item" description="PARAMRENTALSMENUITEM"/>
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
 	</params>
 </install>

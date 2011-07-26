@@ -16,8 +16,11 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-$use_ajax = $params->get('use_ajax', 0);
-$category = $params->get('category', 0);
+$use_ajax       = $params->get('use_ajax', 0);
+$category       = $params->get('category', 0);
+$sales_itemid   = $params->get('sales_itemid', 0);
+$rentals_itemid = $params->get('rentals_itemid', 0);
+
 $document =& JFactory::getDocument();
 $document->addStyleDeclaration("
 	#jea_search_form select {
@@ -30,7 +33,31 @@ if ($use_ajax ) {
 	//initialize the form when the page load
 	$document->addScriptDeclaration("
 		window.addEvent('domready', function() {
-			refreshForm(); 
+			refreshForm();
+			
+    			if ($('renting') && $('selling')) {
+    				
+    				if ($('renting').checked) {
+    					$('menuItemId').value = $rentals_itemid;
+    				} else {
+    					$('menuItemId').value = $sales_itemid;
+    				}
+    			
+    				$('renting').addEvent('click', function() {
+    					if ($use_ajax) {
+    						reinitForm();
+    					}
+    					$('menuItemId').value = $rentals_itemid;
+    				});
+    				
+    				$('selling').addEvent('click', function() {
+    					if ($use_ajax) {
+    						reinitForm();
+    					}
+    					$('menuItemId').value = $sales_itemid;
+    				});
+    			}
+			
 		});");
 }
 
@@ -44,9 +71,9 @@ if ($use_ajax ) {
     <input type="hidden" id="cat" name="cat" value="renting" />
     <?php else: ?>
 	<p>
-    <input type="radio" name="cat" id="renting" value="renting" checked="checked" <?php echo $use_ajax ? 'onclick="reinitForm()"' : '' ?> />
+    <input type="radio" name="cat" id="renting" value="renting" checked="checked" />
     <label for="renting"><?php echo JText::_('Renting') ?></label>
-    <input type="radio" name="cat" id="selling" value="selling" <?php echo $use_ajax ? 'onclick="reinitForm()"' : '' ?> />
+    <input type="radio" name="cat" id="selling" value="selling" />
     <label for="selling"><?php echo JText::_('Selling') ?></label>
     </p>
     <?php endif ?>
@@ -79,7 +106,15 @@ if ($use_ajax ) {
   	
 <?php endif ?>
   	<p><input type="submit" class="button" value="<?php echo JText::_('Search') ?>" />
-    <input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid', 0) ?>" />
+    
+    <?php if($category == 1): ?>
+    <input type="hidden" name="Itemid" value=""<?php echo $sales_itemid ?>" />
+    <?php elseif($category == 2): ?>
+    <input type="hidden" name="Itemid" value="<?php echo $rentals_itemid ?>" />
+    <?php else: ?>
+    <input type="hidden" name="Itemid" id="menuItemId" value="0" />
+    <?php endif ?>
+    
     <?php echo JHTML::_( 'form.token' ) // Do not remove this ?>
     </p>
 </form>
