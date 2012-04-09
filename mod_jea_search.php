@@ -1,42 +1,49 @@
 <?php
 /**
- * This file is part of Joomla Estate Agency - Joomla! extension for real estate agency
- * 
  * @version     $Id$
- * @package		Jea.module.search
- * @copyright	Copyright (C) 2008 PHILIP Sylvain. All rights reserved.
- * @license		GNU/GPL, see LICENSE.txt
- * Joomla Estate Agency is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses.
- * 
+ * @package     Joomla.Site
+ * @subpackage  mod_jea_search
+ * @copyright   Copyright (C) 2012 PHILIP Sylvain. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die('Restricted access');
+// no direct access
+defined('_JEXEC') or die;
 
-function getHtmlList($table, $title, $id ){
+$states = array(
+        'filter_search' => '',
+        'filter_transaction_type' => '',
+        'filter_type_id' => 0,
+        'filter_department_id' => 0,
+        'filter_town_id' => 0,
+        'filter_area_id' => 0,
+        'filter_zip_codes' => '',
+        'filter_budget_min' => 0,
+        'filter_budget_max' => 0,
+        'filter_living_space_min' => 0,
+        'filter_living_space_max' => 0,
+        'filter_land_space_min' => 0,
+        'filter_land_space_max' => 0,
+        'filter_rooms_min' => 0,
+        'filter_bedrooms_min' => 0,
+        'filter_bathrooms_min' => 0,
+        'filter_floor' => '',
+        'filter_hotwatertype' => 0,
+        'filter_heatingtype' => 0,
+        'filter_condition' => 0,
+        'filter_orientation' => 0,
+        'filter_amenities' => array()
+);
 
-	$sql = "SELECT `id` AS value ,`value` AS text FROM {$table} ORDER BY ordering" ;
+$app = JFactory::getApplication();
 
-	$db = & JFactory::getDBO();
-	$db->setQuery($sql);
-	$rows = $db->loadObjectList();
-
-	if ( $db->getErrorNum() ) {
-		JError::raiseWarning( 200, $db->getErrorMsg() );
-	}
-
-	//unshift default option
-	array_unshift($rows, JHTML::_('select.option', '0', $title ));
-
-	return JHTML::_('select.genericlist', $rows , $id, 'class="inputbox" size="1" ' , 'value', 'text', 0);
+// Retrieve user request saved in session
+foreach ($states as $name => $defaultValue) {
+    $states[$name] = $app->getUserStateFromRequest('module_jea_search.'. $name, $name, $defaultValue);
 }
 
-//conflict between component searchform and module searchform because both use same id's
-$conflict = JRequest::getVar('option') == 'com_jea' && JRequest::getVar('layout') == 'search' ;
-$conflict2 = JRequest::getVar('option') == 'com_jea' && JRequest::getVar('layout') == 'form' ;
-if(!$conflict && !$conflict2 ){
-	require(JModuleHelper::getLayoutPath('mod_jea_search'));
-}
+// Load component language
+JFactory::getLanguage()->load('com_jea', JPATH_BASE.'/components/com_jea');
 
+
+require(JModuleHelper::getLayoutPath('mod_jea_search'));

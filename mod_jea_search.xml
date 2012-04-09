@@ -1,51 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install type="module" version="1.5" method="upgrade">
-	<name>JEA search V1.3</name>
+<extension type="module" version="2.5" method="upgrade">
+	<name>mod_jea_search</name>
 	<author>Sylvain Philip</author>
 	<creationDate>mars 2008</creationDate>
 	<copyright>(C) 2008 PHILIP Sylvain. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>contact@sphilip.com</authorEmail>
 	<authorUrl>www.sphilip.com</authorUrl>
-	<version>1.4</version>
-	<description>DESCJEASEARCHMOD</description>
+	<version>2.0</version>
+	<description>MOD_JEA_SEARCH_DESCRIPTION</description>
+
 	<files>
 		<filename module="mod_jea_search">mod_jea_search.php</filename>
-		<filename module="mod_jea_search">tmpl/default.php</filename>
+		<folder>tmpl</folder>
+		<filename>mod_jea_search.xml</filename>
+		<filename>index.html</filename>
 	</files>
+
 	<languages folder="languages">
-	    <language tag="en-GB">en-GB.mod_jea_search.ini</language>
+		<language tag="en-GB">en-GB.mod_jea_search.ini</language>
+		<language tag="en-GB">en-GB.mod_jea_search.sys.ini</language>
 		<language tag="fr-FR">fr-FR.mod_jea_search.ini</language>
+		<language tag="fr-FR">fr-FR.mod_jea_search.sys.ini</language>
 	</languages>
-	<params>
-		<param name="use_ajax" type="radio" default="1" label="Use AJAX" description="PARAMUSEAJAX">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		
-		<param name="category" type="list" default="0" label="Category" description="PARAMCATEGORY">
-			<option value="0">Renting or Selling</option>
-			<option value="1">Selling only</option>
-			<option value="2">Renting only</option>
-		</param>
-		
-		<param name="show_types" type="radio" default="1" label="Filter on types">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		
-		<param name="show_departments" type="radio" default="1" label="Filter on departments">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		
-		<param name="show_towns" type="radio" default="1" label="Filter on towns">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		
-		<param name="sales_itemid" type="menuitem" default="" label="Sales menu Item" description="PARAMSALESMENUITEM"/>
-		<param name="rentals_itemid" type="menuitem" default="" label="Rentals menu Item" description="PARAMRENTALSMENUITEM"/>
-		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
-	</params>
-</install>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="use_ajax" type="list" default="1"
+					label="MOD_JEA_SEARCH_FIELD_USE_AJAX_LABEL" description="MOD_JEA_SEARCH_FIELD_USE_AJAX_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field name="transaction_type" type="list"
+					label="MOD_JEA_SEARCH_FIELD_TRANSACTION_TYPE_LABEL" description="MOD_JEA_SEARCH_FIELD_TRANSACTION_TYPE_DESC">
+					<option value="">JALL</option>
+					<option value="SELLING">MOD_JEA_SEARCH_OPTION_SELLING</option>
+					<option value="RENTING">MOD_JEA_SEARCH_OPTION_RENTING</option>
+				</field>
+
+				<field name="show_freesearch" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_FREE_SEARCH_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_departments" type="list" default="1"
+					label="MOD_JEA_SEARCH_FIELD_DEPARTMENTS_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_towns" type="list" default="1"
+					label="MOD_JEA_SEARCH_FIELD_TOWNS_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_areas" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_AREAS_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_zip_codes" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_ZIP_CODES_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_budget" type="list" default="1"
+					label="MOD_JEA_SEARCH_FIELD_BUDGET_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_living_space" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_LIVING_SPACE_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_land_space" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_LAND_SPACE_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_number_of_rooms" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_NUMBER_OF_ROOMS_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_number_of_bedrooms" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_NUMBER_OF_BEDROOMS_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_number_of_bathrooms" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_NUMBER_OF_BATHROOMS_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_floor" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_FLOOR_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_hotwatertypes" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_HOT_WATER_TYPES_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_heatingtypes" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_HEATING_TYPES_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_conditions" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_CONDITION_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_orientation" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_ORIENTATION_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="show_amenities" type="list" default="0"
+					label="MOD_JEA_SEARCH_FIELD_AMENITIES_LABEL">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<field name="search_itemid" type="menuitem" default=""
+					label="MOD_JEA_SEARCH_FIELD_SEARCH_MENU_ITEM_LABEL" description="MOD_JEA_SEARCH_FIELD_SEARCH_MENU_ITEM_DESC" />
+
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="moduleclass_sfx" type="text" default=""
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
