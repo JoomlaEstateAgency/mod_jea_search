@@ -9,32 +9,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_ROOT.'/administrator/components/com_jea/helpers/html');
-JHtml::addIncludePath(JPATH_ROOT.'/components/com_jea/helpers/html');
-
-$uid = uniqid();
-
-$useAjax        = $params->get('use_ajax', 0);
-$transationType = $params->get('transaction_type');
-
-$showLocalization = $params->get('show_departments',1)
-                  || $params->get('show_towns',1)
-                  || $params->get('show_areas',0)
-                  || $params->get('show_zip_codes',0);
-
-$showOtherFilters = $params->get('show_number_of_bedrooms')
-                  || $params->get('show_number_of_bathrooms')
-                  || $params->get('show_floor')
-                  || $params->get('show_hotwatertypes')
-                  || $params->get('show_heatingtypes')
-                  || $params->get('show_conditions')
-                  || $params->get('show_orientation');
-
-if(empty($transationType) && empty($states['filter_transaction_type'])) {
-    // Set SELLING as default transaction_type state
-    $states['filter_transaction_type'] = 'SELLING';
-}
-
 $fields = json_encode($states);
 $ajax = $useAjax? 'true': 'false';
 JHTML::script('media/com_jea/js/search.js', true);
@@ -47,7 +21,7 @@ window.addEvent('domready', function() {
 });");
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_jea&task=properties.search') ?>" method="post" id="mod-jea-search-form-<?php echo $uid ?>">
+<form action="<?php echo $formURL ?>" method="post" id="mod-jea-search-form-<?php echo $uid ?>">
 
 <?php if ($params->get('show_freesearch')): ?>
   <p>
@@ -235,7 +209,6 @@ window.addEvent('domready', function() {
 <?php endif ?>
 
   <p>
-    <input type="hidden" name="Itemid" value="<?php echo $params->get('search_itemid', 0) ?>" />
     <input type="reset" class="button" value="<?php echo JText::_('JSEARCH_FILTER_CLEAR') ?>" />
     <input type="submit" class="button" value="<?php echo $useAjax ? JText::_('COM_JEA_LIST_PROPERTIES') : JText::_('JSEARCH_FILTER_SUBMIT')?>" />
   </p>
