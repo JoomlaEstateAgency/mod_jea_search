@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 // no direct access
-defined('_JEXEC') or die;
+defined('_JEXEC') or die();
 
 $fields = json_encode($states);
 $ajax = $useAjax? 'true': 'false';
@@ -188,7 +188,7 @@ window.addEvent('domready', function() {
             JHTML::_('select.option', 'SW', JText::_('COM_JEA_OPTION_SOUTH_WEST')),
             JHTML::_('select.option', 'SE', JText::_('COM_JEA_OPTION_SOUTH_EAST'))
         );
-        echo JHTML::_('select.genericlist', $options, 'filter_orientation', 'size="1" id="filter_orientation'.$uid.'"', 'value', 'text',  $states['filter_orientation']) 
+        echo JHTML::_('select.genericlist', $options, 'filter_orientation', 'size="1"', 'value', 'text',  $states['filter_orientation'], array('id' => 'filter_orientation'.$uid)) 
     ?>
     </li>
     <?php endif?>
