@@ -24,6 +24,12 @@
 		<language tag="fr-FR">fr-FR.mod_jea_search.sys.ini</language>
 	</languages>
 
+	<!-- Updateserver definition -->
+	<updateservers>
+		<!-- Note: No spaces or linebreaks allowed between the server tags -->
+		<server type="extension" priority="1" name="JEA Search Update Site">http://jea.sphilip.com/update/mod_jea_search.xml</server>
+	</updateservers>
+
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
