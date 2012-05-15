@@ -58,7 +58,8 @@ $showLocalization = $params->get('show_departments',1)
                   || $params->get('show_areas',0)
                   || $params->get('show_zip_codes',0);
 
-$showOtherFilters = $params->get('show_number_of_bedrooms')
+$showOtherFilters = $params->get('show_number_of_rooms')
+                  || $params->get('show_number_of_bedrooms')
                   || $params->get('show_number_of_bathrooms')
                   || $params->get('show_floor')
                   || $params->get('show_hotwatertypes')
