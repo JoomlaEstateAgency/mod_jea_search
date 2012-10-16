@@ -67,9 +67,11 @@ $showOtherFilters = $params->get('show_number_of_rooms')
                   || $params->get('show_conditions')
                   || $params->get('show_orientation');
 
-if(empty($transationType) && empty($states['filter_transaction_type'])) {
+if (empty($transationType) && empty($states['filter_transaction_type'])) {
     // Set SELLING as default transaction_type state
     $states['filter_transaction_type'] = 'SELLING';
+} elseif (!empty($transationType) && empty($states['filter_transaction_type'])) {
+    $states['filter_transaction_type'] = $transationType;
 }
 
 $itemid = $params->get('search_itemid', 0);
