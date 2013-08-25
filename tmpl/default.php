@@ -12,6 +12,7 @@ defined('_JEXEC') or die();
 $fields = json_encode($states);
 $ajax = $useAjax? 'true': 'false';
 JHTML::script('media/com_jea/js/search.js', true);
+JHTML::stylesheet('modules/mod_jea_search/mod_jea_search.css');
 $document = JFactory::getDocument();
 $document->addScriptDeclaration("
 window.addEvent('domready', function() {
@@ -21,7 +22,7 @@ window.addEvent('domready', function() {
 });");
 ?>
 
-<form action="<?php echo $formURL ?>" method="post" id="mod-jea-search-form-<?php echo $uid ?>">
+<form action="<?php echo $formURL ?>" method="post" id="mod-jea-search-form-<?php echo $uid ?>" class="mod-jea-search-form">
 
 <?php if ($params->get('show_freesearch')): ?>
   <p>

@@ -1,0 +1,16 @@
+
+.mod-jea-search-form label {
+	display: inline !important;
+}
+
+.mod-jea-search-form select,
+.mod-jea-search-form input {
+	width: auto;
+}
+
+.mod-jea-search-form ul,
+.mod-jea-search-form li {
+	list-style: none;
+	margin: 8px 0;
+	padding: 0;
+}
