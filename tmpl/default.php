@@ -11,8 +11,8 @@ defined('_JEXEC') or die();
 
 $fields = json_encode($states);
 $ajax = $useAjax? 'true': 'false';
-JHTML::script('media/com_jea/js/search.js', true);
-JHTML::stylesheet('modules/mod_jea_search/mod_jea_search.css');
+JHtml::script('media/com_jea/js/search.js', true);
+JHtml::stylesheet('modules/mod_jea_search/mod_jea_search.css');
 $document = JFactory::getDocument();
 $document->addScriptDeclaration("
 window.addEvent('domready', function() {
