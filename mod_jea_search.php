@@ -47,7 +47,7 @@ $app = JFactory::getApplication();
 
 // Retrieve user request saved in session
 foreach ($states as $name => $defaultValue) {
-    $states[$name] = $app->getUserStateFromRequest('module_jea_search.'. $name, $name, $defaultValue);
+    $states[$name] = $app->getUserStateFromRequest('module_jea_search.' . $module->id . '.' . $name, $name, $defaultValue);
 }
 
 $useAjax        = $params->get('use_ajax', 0);
