@@ -81,4 +81,4 @@ if ($itemid) {
     $formURL = JRoute::_('index.php?option=com_jea&task=properties.search');
 }
 
-require(JModuleHelper::getLayoutPath('mod_jea_search'));
+require(JModuleHelper::getLayoutPath('mod_jea_search', $params->get('layout', 'default')));
