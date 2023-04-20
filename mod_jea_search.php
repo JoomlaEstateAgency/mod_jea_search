@@ -2,24 +2,33 @@
 /**
  * @package     Joomla.Site
  * @subpackage  mod_jea_search
- * @copyright   Copyright (C) 2008 - 2020 PHILIP Sylvain. All rights reserved.
+ * @copyright   Copyright (C) 2008 - 2023 PHILIP Sylvain. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Joomla\CMS\Router\Route;
+use Joomla\Registry\Registry;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Application\SiteApplication;
+
 defined('_JEXEC') or die;
+
+assert($params instanceof Registry);
+assert($app instanceof SiteApplication);
 
 /**
  * @var $module stdClass
  * @var $params Joomla\Registry\Registry
  */
 
-JHtml::addIncludePath(JPATH_ROOT . '/administrator/components/com_jea/helpers/html');
-JHtml::addIncludePath(JPATH_ROOT . '/components/com_jea/helpers/html');
+ HTMLHelper::addIncludePath(JPATH_ROOT . '/administrator/components/com_jea/helpers/html');
+ HTMLHelper::addIncludePath(JPATH_ROOT . '/components/com_jea/helpers/html');
 
 $uid = uniqid();
 
 // Load component language
-JFactory::getLanguage()->load('com_jea', JPATH_BASE . '/components/com_jea');
+$app->getLanguage()->load('com_jea', JPATH_BASE . '/components/com_jea');
 
 $states = array(
 	'filter_search' => '',
@@ -46,8 +55,6 @@ $states = array(
 	'filter_amenities' => array()
 );
 
-$app = JFactory::getApplication();
-
 // Retrieve user request saved in session
 foreach ($states as $name => $defaultValue)
 {
@@ -68,7 +75,7 @@ $states['filter_transaction_type'] = $transactionType;
 
 $itemid = $params->get('search_itemid', 0);
 
-$formURL = $itemid ? JRoute::_('index.php?option=com_jea&task=properties.search&Itemid=' . $itemid) :
-			JRoute::_('index.php?option=com_jea&task=properties.search');
+$formURL = $itemid ? Route::_('index.php?option=com_jea&task=properties.search&Itemid=' . $itemid) :
+			Route::_('index.php?option=com_jea&task=properties.search');
 
-require JModuleHelper::getLayoutPath('mod_jea_search', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_jea_search', $params->get('layout', 'default'));
